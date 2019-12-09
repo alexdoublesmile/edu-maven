@@ -79,4 +79,8 @@ public class Adult extends Person {
                 ", studentId='" + studentId + '\'' +
                 "} " + super.toString();
     }
+
+    public void setUnivesity(University university) {
+        this.university = university;
+    }
 }
