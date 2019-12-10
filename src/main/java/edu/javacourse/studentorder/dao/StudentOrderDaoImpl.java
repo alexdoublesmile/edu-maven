@@ -7,10 +7,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.sql.*;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class StudentOrderDaoImpl implements StudentOrderDao {
@@ -84,6 +86,8 @@ public class StudentOrderDaoImpl implements StudentOrderDao {
 
             con.setAutoCommit(false);
             try {
+
+
 
                 // Header
                 stmt.setInt(1, StudentOrderStatus.START.ordinal());

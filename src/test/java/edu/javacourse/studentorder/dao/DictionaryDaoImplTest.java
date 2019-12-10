@@ -5,18 +5,14 @@ import edu.javacourse.studentorder.domain.PassportOffice;
 import edu.javacourse.studentorder.domain.RegisterOffice;
 import edu.javacourse.studentorder.domain.Street;
 import edu.javacourse.studentorder.exception.DaoException;
-import org.junit.*;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.sql.Connection;
-import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class DictionaryDaoImplTest {
 
@@ -33,7 +29,7 @@ public class DictionaryDaoImplTest {
         LocalDateTime dt2 = LocalDateTime.now();
         logger.info("TEST {} {}", dt1, dt2);
 
-        List<Street> streetList = new DictionaryDaoImpl().findStreets("про");
+        List<Street> streetList = new DictionaryDaoImpl().findStreets("пр");
         Assert.assertTrue(streetList.size() == 2);
     }
 

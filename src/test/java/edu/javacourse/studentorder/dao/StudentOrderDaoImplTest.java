@@ -24,10 +24,8 @@ public class StudentOrderDaoImplTest {
     @Test
     public void saveStudentOrder() throws DaoException {
         StudentOrder so = buildStudentOrder(10);
-
         Long id = new StudentOrderDaoImpl().saveStudentOrder(so);
-        logger.info(String.format("SO WAS SAVED - %s", so));
-        logger.info(String.format("SO FROM DATABASE - %s", new StudentOrderDaoImpl().getStudentOrders().get(0).toString()));
+
     }
 
     @Test(expected = DaoException.class)

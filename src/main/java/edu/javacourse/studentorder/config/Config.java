@@ -5,12 +5,13 @@ import java.util.Properties;
 
 public class Config {
 
-    private static final String PROPERTIES_FILE_NAME = "dao.properties";
+    private static final String PROPERTIES_FILE_NAME = "config.properties";
 
     public static final String DB_URL = "db.url";
     public static final String DB_LOGIN = "db.login";
     public static final String DB_PASSWORD = "db.password";
     public static final String DB_LIMIT = "db.limit";
+    public static final String CR_URL = "cr.url";
 
     private static Properties properties = new Properties();
 

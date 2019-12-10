@@ -1,6 +1,5 @@
 package edu.javacourse.studentorder.dao;
 
-import edu.javacourse.studentorder.config.Config;
 import edu.javacourse.studentorder.domain.CountryArea;
 import edu.javacourse.studentorder.domain.PassportOffice;
 import edu.javacourse.studentorder.domain.RegisterOffice;
@@ -9,7 +8,10 @@ import edu.javacourse.studentorder.exception.DaoException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -53,7 +55,8 @@ public class DictionaryDaoImpl implements DictionaryDao {
             stmt.setString(1, "%" + pattern + "%");
             ResultSet rs = stmt.executeQuery();
             while(rs.next()) {
-                Street str = new Street(rs.getLong("street_code"), rs.getString("street_name"));
+                Street str = new Street(rs.getLong("street_code"),
+                        rs.getString("street_name"));
                 result.add(str);
             }
         } catch (SQLException ex) {

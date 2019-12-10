@@ -1,31 +1,33 @@
 package edu.javacourse.studentorder.validator.register;
 
+import edu.javacourse.studentorder.config.Config;
+import edu.javacourse.studentorder.domain.Person;
 import edu.javacourse.studentorder.domain.register.CityRegisterRequest;
 import edu.javacourse.studentorder.domain.register.CityRegisterResponse;
-import edu.javacourse.studentorder.domain.Person;
 import edu.javacourse.studentorder.exception.CityRegisterException;
-import edu.javacourse.studentorder.exception.TransportException;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
-import java.util.Map;
 
 public class RealCityRegisterChecker implements CityRegisterChecker {
 
     @Override
-    public CityRegisterResponse checkPerson(Person person)
-            throws CityRegisterException, TransportException {
+    public CityRegisterResponse checkPerson(Person person) throws CityRegisterException {
 
-        CityRegisterRequest request = new CityRegisterRequest(person);
+        try {
+            CityRegisterRequest request = new CityRegisterRequest(person);
 
-        Client client = ClientBuilder.newClient();
-        CityRegisterResponse response = client.target("http://localhost:8080/city-register-1.0/rest/check")
-                .request(MediaType.APPLICATION_JSON)
-                .post(Entity.entity(request, MediaType.APPLICATION_JSON))
-                .readEntity(CityRegisterResponse.class);
+            Client client = ClientBuilder.newClient();
+            CityRegisterResponse response = client.target(Config.getProperty(Config.CR_URL))
+                    .request(MediaType.APPLICATION_JSON)
+                    .post(Entity.entity(request, MediaType.APPLICATION_JSON))
+                    .readEntity(CityRegisterResponse.class);
 
-        return response;
+            return response;
+        } catch (Exception e) {
+            throw new CityRegisterException("", e.getMessage(), e);
+        }
     }
 }
